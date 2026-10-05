@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10272b">
+  <meta name="description" content="Dream4ACT: a shared visual action interface for multi-embodiment video–action modeling. Predict observations, infer actions, and generate both with action views.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dream4ACT — A Shared Visual Action Interface">
+  <meta property="og:description" content="Multi-embodiment video–action modeling through four action views and training-free action recovery.">
+  <title>Dream4ACT — A Shared Visual Action Interface</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="assets/css/styles.css?v=d7d610388a43">
+  <script src="assets/js/site-config.js?v=ce98ba0d2f7a" defer></script>
+  <script src="assets/js/script.js?v=c7a2f670e140" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu <span aria-hidden="true">☰</span></button>
+    <nav id="main-nav" aria-label="Main navigation">
+      <a href="#overview">Video</a>
+      <a href="#abstract">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#experiments">Performance</a>
+      <a href="#resources">Citation</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-background" aria-hidden="true">
+      <div class="hero-photos">
+        <img src="assets/images/robot-3.jpg" alt="" fetchpriority="high">
+        <img src="assets/images/robot-0.jpg" alt="">
+        <img src="assets/images/robot-1.jpg" alt="">
+        <img src="assets/images/robot-2.jpg" alt="">
+      </div>
+      <video id="hero-video" muted loop playsinline preload="none" hidden></video>
+    </div>
+    <div class="hero-content">
+      <h1 id="hero-title">Dream4ACT</h1>
+      <p class="hero-subtitle">A Shared Visual Action Interface<br>for Multi-Embodiment Video-Action Modeling</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="https://arxiv.org/pdf/2609.40153" target="_blank" rel="noopener noreferrer" data-resource="paper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6v18h12V7zm0 0v5h5M9 12h6M9 16h6"/></svg><span data-resource-label>Paper</span></a>
+        <a class="button button-outline" href="https://www.youtube.com/watch?v=hOuqqBf4yC0" target="_blank" rel="noopener noreferrer" data-resource="video"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg>Video</a>
+      </div>
+    </div>
+    <div class="hero-bottom"><a href="#team">Explore the research <span aria-hidden="true">↓</span></a></div>
+  </section>
+
+  <main id="main">
+    <section class="team section-width" id="team" aria-label="Authors and affiliations">
+      <div class="authors">
+        <span>Xiangyu Zhu<sup>1,2</sup></span><span>Jin Xu<sup>1</sup></span><span>Yue Guo<sup>1,3</sup></span>
+        <span>Xin Wu<sup>1,4</sup></span><span>Yifan Sun<sup>1,5</sup></span><span>Xiancong Ren<sup>1</sup></span>
+        <span>Jianxin Sun<sup>1</sup></span><span>Yong Dai<sup>1,†</sup></span><span>Xiaozhu Ju<sup>1,✉</sup></span>
+      </div>
+      <div class="affiliations" tabindex="0" role="region" aria-label="Author affiliations">
+        <span><sup>1</sup> Beijing Humanoid Robot Innovation Center</span>
+        <span><sup>2</sup> Beijing Institute of Technology</span>
+        <span><sup>3</sup> Harbin Institute of Technology, Shenzhen</span>
+        <span><sup>4</sup> The University of Hong Kong</span>
+        <span><sup>5</sup> China University of Mining &amp; Technology, Beijing</span>
+      </div>
+      <p class="author-note">† Project leader · ✉ Corresponding author</p>
+    </section>
+
+    <section class="section section-dark" id="overview" aria-labelledby="overview-title">
+      <div class="section-width">
+        <p class="eyebrow section-index">01 / VIDEO</p>
+        <div class="section-heading"><h2 id="overview-title">See actions.<br><span class="text-mint">Imagine what comes next.</span></h2></div>
+        <div class="video-slot overview-video" id="overview-media" aria-label="Dream4ACT project video">
+          <iframe src="https://www.youtube.com/embed/hOuqqBf4yC0" title="Dream4ACT project video on YouTube" width="1280" height="720" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="abstract" aria-labelledby="abstract-title">
+      <div class="section-width">
+        <div class="abstract-layout">
+          <div><p class="eyebrow section-index">02 / OVERVIEW</p><h2 id="abstract-title">Different robots.<br>Shared visual<br><span class="text-green">actions.</span></h2></div>
+          <div class="abstract-copy"><p class="lead">What if robot actions could be modeled in the same visual space as the world they change?</p>
+            <p>Dream4ACT renders target joint configurations as four <strong>action views</strong> using URDF-based forward kinematics. The views preserve full-arm articulation and gripper geometry, while giving different embodiments a fixed-shape visual interface.</p>
+            <p>A shared video model learns to predict observations, infer actions, or generate both. Training-free multiview matching then recovers executable joint targets from the predicted action views.</p>
+            <details class="abstract-details"><summary>Read the full abstract <span aria-hidden="true">+</span></summary><p>Video generation models (VGMs) offer strong spatiotemporal priors for embodied observation–action modeling. However, joint-space action vectors lack explicit image-space structure and vary in dimensionality and semantics across embodiments, making it challenging to directly leverage the rich spatiotemporal priors of VGMs. End-effector visualizations provide an alternative but do not specify the full articulated configuration needed for robot execution. We present Dream4ACT, a world model built for joint video-action modeling across embodiments. To unify action representations across embodiments, we introduce a shared visual action interface, called action views, which render target joint configurations from four prescribed virtual cameras using URDF-based forward kinematics. This shared visual representation preserves embodiment-specific articulated geometry while allowing observation and action sequences to share a video autoencoder and diffusion transformer. Through masked flow-matching, our model supports forward dynamics, inverse dynamics, and joint observation–action generation within a single jointly trained model by varying which future sequences are corrupted. To recover executable action sequences from predicted action views, we propose a training-free, URDF-constrained multiview recovery mechanism, without a learned embodiment-specific decoder. Dream4ACT achieves an average success rate of 88.98% on RoboTwin 2.0 and an overall score of 65.66 on TriWorldBench, supporting effective closed-loop manipulation and competitive action-conditioned multiview prediction through the visual action interface.</p></details>
+          </div>
+        </div>
+        <figure class="paper-figure"><button class="figure-button" type="button" data-zoom="assets/images/teaser.png?v=af52b62586f7" aria-label="Enlarge Dream4ACT overview figure"><img src="assets/images/teaser.png?v=af52b62586f7" width="1564" height="846" loading="lazy" alt="Dream4ACT connects joint targets, four action views, and RGB observations through forward dynamics, inverse dynamics, and joint generation. Real-world tasks and benchmark results appear below."><span class="zoom-label">View larger</span></button><figcaption class="paper-caption"><strong>Overview of Dream4ACT.</strong> <em>Top:</em> A shared action-view interface supports forward dynamics, inverse dynamics, and joint generation, with training-free recovery of joint targets. <em>Bottom left:</em> Examples of multi embodiments real-world task execution. <em>Bottom right:</em> Success rates and scores show strong performance in both robotic manipulation and action-conditioned video generation.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section" id="method" aria-labelledby="method-title">
+      <div class="section-width">
+        <p class="eyebrow section-index">03 / METHOD</p>
+        <div class="section-heading"><h2 id="method-title">Actions as views.<br><span class="text-green">Views into actions.</span></h2></div>
+        <div class="method-steps">
+          <article><span class="step-number">01</span><h3>Render action views</h3><p>Use the robot’s URDF to render articulated configurations from four prescribed virtual cameras, independent of the observation cameras.</p></article>
+          <article><span class="step-number">02</span><h3>Model video and action</h3><p>A shared video VAE and diffusion transformer process RGB observations and action views. A frozen VLM and trainable semantic adapter provide instruction-grounded scene features; masked flow matching selects the prediction mode.</p></article>
+          <article><span class="step-number">03</span><h3>Recover joint targets</h3><p>Match predicted views against URDF-based renderings across all four cameras to recover actions without a learned embodiment-specific decoder.</p></article>
+        </div>
+        <figure class="paper-figure architecture"><button class="figure-button" type="button" data-zoom="assets/images/overview.png?v=a0aaa190c40e" aria-label="Enlarge Dream4ACT architecture figure"><img src="assets/images/overview.png?v=a0aaa190c40e" loading="lazy" alt="Dream4ACT architecture: URDF rendering, shared video and action modeling with semantic conditioning, and a training-free multiview action solver."><span class="zoom-label">View larger</span></button><figcaption class="paper-caption"><strong>Architecture of Dream4ACT.</strong> <em>(a)</em> URDF-based rendering produces four action views. <em>(b)</em> A shared video VAE and diffusion transformer model RGB observations and action views with VLM-derived semantic conditioning, here we show the joint generation mode. <em>(c)</em> Training-free multiview action solver recovers joint targets from predicted views.</figcaption></figure>
+        <div class="mode-explorer tab-group" data-tabs>
+          <div class="mode-heading"><h3>One model. Three modes.</h3></div>
+          <div class="tabs" role="tablist" aria-label="Modeling mode">
+            <button id="forward-tab" role="tab" aria-selected="true" aria-controls="forward-panel">Forward dynamics</button>
+            <button id="inverse-tab" role="tab" aria-selected="false" aria-controls="inverse-panel" tabindex="-1">Inverse dynamics</button>
+            <button id="joint-tab" role="tab" aria-selected="false" aria-controls="joint-panel" tabindex="-1">Joint generation</button>
+          </div>
+          <div id="forward-panel" role="tabpanel" aria-labelledby="forward-tab" tabindex="0"><div class="mode-flow"><div><span>GIVEN</span><strong>Future action views</strong></div><span class="flow-connector" aria-hidden="true">→</span><div class="model-node">Dream4ACT</div><span class="flow-connector" aria-hidden="true">→</span><div class="generated"><span>GENERATED</span><strong>Future observations</strong></div></div><p class="mode-description">Predict how the scene evolves under a given action trajectory.</p></div>
+          <div id="inverse-panel" role="tabpanel" aria-labelledby="inverse-tab" tabindex="0" hidden><div class="mode-flow"><div><span>GIVEN</span><strong>Future observations</strong></div><span class="flow-connector" aria-hidden="true">→</span><div class="model-node">Dream4ACT</div><span class="flow-connector" aria-hidden="true">→</span><div class="generated"><span>GENERATED</span><strong>Future action views</strong></div></div><p class="mode-description">Infer the actions consistent with observed or desired future outcomes.</p></div>
+          <div id="joint-panel" role="tabpanel" aria-labelledby="joint-tab" tabindex="0" hidden><div class="mode-flow"><div><span>GIVEN</span><strong>Current context</strong></div><span class="flow-connector" aria-hidden="true">→</span><div class="model-node">Dream4ACT</div><span class="flow-connector" aria-hidden="true">→</span><div class="generated"><span>GENERATED</span><strong>Observations + action views</strong></div></div><p class="mode-description">Generate future observations and action views together from the current context.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="results" aria-labelledby="results-title">
+      <div class="section-width">
+        <p class="eyebrow section-index">04 / RESULTS</p>
+        <div class="section-heading"><h2 id="results-title">One visual interface.<br><span class="text-muted">From prediction to control.</span></h2></div>
+        <div class="metrics">
+          <article class="metric metric-blue">
+            <div class="metric-label"><span>SIMULATION</span><strong>RoboTwin 2.0</strong></div>
+            <p class="metric-value">88.98<span>%</span></p><p class="metric-description">Average task success</p>
+            <div class="mini-bars" aria-label="Clean 90.50 percent; randomized 87.46 percent">
+              <div><span>Clean</span><span class="bar-track"><i style="--value:90.5%"></i></span><strong>90.50</strong></div>
+              <div><span>Randomized</span><span class="bar-track"><i style="--value:87.46%"></i></span><strong>87.46</strong></div>
+            </div><p class="metric-footnote">50 bimanual manipulation tasks</p>
+          </article>
+          <article class="metric metric-bronze">
+            <div class="metric-label"><span>WORLD MODELING</span><strong>TriWorldBench</strong></div>
+            <p class="metric-value">65.66</p><p class="metric-description">Overall TWB-Score</p>
+            <div class="mini-bars" aria-label="Tri-view consistency 81.63; task alignment 84.22">
+              <div><span>View consistency</span><span class="bar-track"><i style="--value:81.63%"></i></span><strong>81.63</strong></div>
+              <div><span>Task alignment</span><span class="bar-track"><i style="--value:84.22%"></i></span><strong>84.22</strong></div>
+            </div><p class="metric-footnote">500-episode official test set</p>
+          </article>
+          <article class="metric metric-green">
+            <div class="metric-label"><span>REAL WORLD</span><strong>Shared weights</strong></div>
+            <p class="metric-value">4<span> platforms</span></p><p class="metric-description">One jointly trained checkpoint</p>
+            <div class="platform-list"><span>Aloha-Agilex</span><span>TienYi2.5 Pro</span><span>Franka Research 3</span><span>UR5e</span></div>
+            <p class="metric-footnote">Single-arm and bimanual manipulation</p>
+          </article>
+        </div>
+        <details class="results-details">
+          <summary>Explore the benchmark results <span aria-hidden="true">+</span></summary>
+          <div class="tab-group" data-tabs>
+            <div class="tabs" role="tablist" aria-label="Benchmark">
+              <button id="rt-tab" role="tab" aria-selected="true" aria-controls="rt-panel">RoboTwin 2.0</button>
+              <button id="twb-tab" role="tab" aria-selected="false" aria-controls="twb-panel" tabindex="-1">TriWorldBench</button>
+              <button id="multi-tab" role="tab" aria-selected="false" aria-controls="multi-panel" tabindex="-1">Multi-embodiment</button>
+            </div>
+            <div id="rt-panel" role="tabpanel" aria-labelledby="rt-tab" tabindex="0">
+              <div class="table-scroll" tabindex="0" role="region" aria-label="RoboTwin results table"><table><caption>Success rates (%) across 50 RoboTwin 2.0 tasks, with 100 trials per task and setting. Baseline results are those reported in the paper.</caption><thead><tr><th scope="col">Method</th><th scope="col">Clean</th><th scope="col">Randomized</th><th scope="col">Average</th></tr></thead><tbody>
+                <tr><th scope="row">π<sub>0.5</sub></th><td>82.74</td><td>76.76</td><td>79.80</td></tr>
+                <tr><th scope="row">Motus</th><td>88.66</td><td>87.02</td><td>87.80</td></tr>
+                <tr><th scope="row">LingBot-VA</th><td>92.90</td><td>91.50</td><td>92.20</td></tr>
+                <tr><th scope="row">Fast-WAM</th><td>91.88</td><td>91.78</td><td>91.80</td></tr>
+                <tr class="ours"><th scope="row">Dream4ACT</th><td>90.50</td><td>87.46</td><td>88.98</td></tr>
+              </tbody></table></div>
+              <p class="small-note">The full 50-task evaluation uses a separately trained checkpoint; the five-embodiment evaluation below uses its own jointly trained checkpoint.</p>
+            </div>
+            <div id="twb-panel" role="tabpanel" aria-labelledby="twb-tab" tabindex="0" hidden>
+              <div class="table-scroll" tabindex="0" role="region" aria-label="TriWorldBench results table"><table><caption>TriWorldBench scores on the official 500-episode test set in forward dynamics mode. Higher is better for every metric.</caption><thead><tr><th scope="col">Method</th><th scope="col"><abbr title="Tri-view consistency">TVC</abbr></th><th scope="col"><abbr title="Task alignment">TA</abbr></th><th scope="col"><abbr title="Physical and 3D coherence">P3D</abbr></th><th scope="col"><abbr title="Motion quality">MQ</abbr></th><th scope="col"><abbr title="Temporal consistency">TC</abbr></th><th scope="col"><abbr title="Visual quality">VQ</abbr></th><th scope="col">Overall</th></tr></thead><tbody>
+                <tr><th scope="row">Ctrl-World</th><td>57.42</td><td>43.72</td><td>34.67</td><td>29.28</td><td>46.17</td><td>16.64</td><td>38.98</td></tr>
+                <tr><th scope="row">Motus</th><td>66.70</td><td>49.69</td><td>34.60</td><td>24.63</td><td>26.56</td><td>16.26</td><td>42.35</td></tr>
+                <tr><th scope="row">Genie Envisioner</th><td>62.39</td><td>33.17</td><td>54.00</td><td>20.17</td><td>32.18</td><td>17.46</td><td>40.73</td></tr>
+                <tr><th scope="row">DreamDojo</th><td>69.63</td><td>56.24</td><td>43.84</td><td>27.96</td><td>60.84</td><td>21.02</td><td>51.72</td></tr>
+                <tr><th scope="row">BWM</th><td>81.87</td><td>86.05</td><td>60.40</td><td>41.29</td><td>62.81</td><td>31.42</td><td>65.54</td></tr>
+                <tr class="ours"><th scope="row">Dream4ACT</th><td>81.63</td><td>84.22</td><td>61.30</td><td>41.66</td><td>64.88</td><td>31.42</td><td>65.66</td></tr>
+              </tbody></table></div>
+              <p class="small-note">TVC: tri-view consistency · TA: task alignment · P3D: physical and 3D coherence · MQ: motion quality · TC: temporal consistency · VQ: visual quality.</p>
+            </div>
+            <div id="multi-panel" role="tabpanel" aria-labelledby="multi-tab" tabindex="0" hidden>
+              <div class="table-scroll" tabindex="0" role="region" aria-label="Multi-embodiment results table"><table><caption>A single jointly trained checkpoint across five embodiments, evaluated on 31 shared tasks with 25 trials per task and setting.</caption><thead><tr><th scope="col">Embodiment</th><th scope="col">Clean (%)</th><th scope="col">Randomized (%)</th><th scope="col">Position error (mm) ↓</th><th scope="col">Rotation error (°) ↓</th><th scope="col">Average (%)</th></tr></thead><tbody>
+                <tr><th scope="row">Aloha-Agilex</th><td>81.94</td><td>82.45</td><td>1.39</td><td>1.57</td><td>82.19</td></tr>
+                <tr><th scope="row">Piper</th><td>81.55</td><td>82.32</td><td>1.66</td><td>1.71</td><td>81.94</td></tr>
+                <tr><th scope="row">ARX-X5</th><td>82.19</td><td>80.26</td><td>1.22</td><td>1.95</td><td>81.23</td></tr>
+                <tr><th scope="row">Franka-Panda</th><td>64.52</td><td>62.45</td><td>4.11</td><td>9.45</td><td>63.48</td></tr>
+                <tr><th scope="row">UR5-Xsg</th><td>31.87</td><td>30.06</td><td>11.85</td><td>21.39</td><td>30.97</td></tr>
+              </tbody></table></div>
+              <p class="small-note">This setting is separate from the full 50-task RoboTwin 2.0 evaluation. End-effector recovery errors are measured from ground-truth action views using five held-out trajectories per task and 40 future frames per window, with equal task weighting.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="experiments" aria-labelledby="experiments-title">
+      <div class="section-width">
+        <p class="eyebrow section-index">05 / PERFORMANCE</p>
+        <div class="section-heading"><h2 id="experiments-title">Across bodies.<br><span class="text-muted">Into the real world.</span></h2></div>
+        <div class="demo-gallery" aria-label="Real-world demonstrations">
+          <div class="gallery-toolbar"><div class="gallery-controls" aria-label="Browse demonstrations"><button type="button" id="demo-prev" aria-label="Previous demonstrations" aria-controls="demo-strip" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button><button type="button" id="demo-next" aria-label="Next demonstrations" aria-controls="demo-strip" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button></div></div>
+          <ul class="demo-strip" id="demo-strip" tabindex="0" aria-label="Real-world demo videos">
+            <li class="demo-card"><div class="video-slot"><div class="video-placeholder"><span class="film-icon" aria-hidden="true">▤</span><p>Real-world demo</p><span>Video coming soon</span></div></div><div class="demo-caption"><span class="demo-number">01</span><h3>Real-world demonstration</h3></div></li>
+            <li class="demo-card"><div class="video-slot"><div class="video-placeholder"><span class="film-icon" aria-hidden="true">▤</span><p>Real-world demo</p><span>Video coming soon</span></div></div><div class="demo-caption"><span class="demo-number">02</span><h3>Real-world demonstration</h3></div></li>
+            <li class="demo-card"><div class="video-slot"><div class="video-placeholder"><span class="film-icon" aria-hidden="true">▤</span><p>Real-world demo</p><span>Video coming soon</span></div></div><div class="demo-caption"><span class="demo-number">03</span><h3>Real-world demonstration</h3></div></li>
+          </ul>
+        </div>
+        <details class="results-details"><summary>Real-world evaluation details <span aria-hidden="true">+</span></summary><div class="table-scroll" tabindex="0" role="region" aria-label="Real-world results table"><table><caption>Success rates (%) for one jointly trained checkpoint over 20 trials per embodiment–task pair, with randomized backgrounds and distractor objects. Common averages place block and wipe plate; All tasks reports the paper’s four-task averages for the bimanual platforms. “–” denotes a task not evaluated on that platform.</caption><thead><tr><th scope="col">Platform</th><th scope="col">Place block</th><th scope="col">Wipe plate</th><th scope="col">Stack blocks</th><th scope="col">Storage item</th><th scope="col">Common</th><th scope="col">All tasks</th></tr></thead><tbody>
+          <tr><th scope="row">Aloha-Agilex</th><td>85.0</td><td>90.0</td><td>20.0</td><td>50.0</td><td>87.5</td><td>61.3</td></tr>
+          <tr><th scope="row">TienYi2.5 Pro</th><td>90.0</td><td>80.0</td><td>30.0</td><td>65.0</td><td>85.0</td><td>66.3</td></tr>
+          <tr><th scope="row">Franka Research 3</th><td>90.0</td><td>85.0</td><td>–</td><td>–</td><td>87.5</td><td>–</td></tr>
+          <tr><th scope="row">UR5e</th><td>85.0</td><td>95.0</td><td>–</td><td>–</td><td>90.0</td><td>–</td></tr>
+        </tbody></table></div></details>
+        <section class="simulation-showcase" id="simulation" aria-labelledby="simulation-title">
+          <p class="eyebrow section-index">SIMULATION / ROBOTWIN 2.0</p>
+          <div class="section-heading"><h3 id="simulation-title">Manipulation in simulation.</h3></div>
+          <div class="demo-gallery" aria-label="Simulation demonstrations">
+            <div class="gallery-toolbar"><div class="gallery-controls" aria-label="Browse simulation demonstrations"><button type="button" id="sim-prev" aria-label="Previous simulation demonstrations" aria-controls="sim-strip" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button><button type="button" id="sim-next" aria-label="Next simulation demonstrations" aria-controls="sim-strip" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button></div></div>
+            <ul class="demo-strip" id="sim-strip" tabindex="0" aria-label="Simulation demo videos"></ul>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section section-dark resources" id="resources" aria-labelledby="citation-title">
+      <div class="section-width">
+        <div class="citation"><h2 id="citation-title">CITATION</h2><div class="citation-code"><button class="citation-copy" type="button" id="copy-citation" aria-label="Copy BibTeX" title="Copy BibTeX"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button><pre><code id="bibtex">@misc{zhu2026dream4actsharedvisualaction,
+      title={Dream4ACT: A Shared Visual Action Interface for Multi-Embodiment Video-Action Modeling}, 
+      author={Xiangyu Zhu and Jin Xu and Yue Guo and Xin Wu and Yifan Sun and Xiancong Ren and Jianxin Sun and Yong Dai and Xiaozhu Ju},
+      year={2026},
+      eprint={2609.40153},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2609.40153}, 
+}</code></pre></div><p class="copy-status" id="copy-status" role="status"></p></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="figure-dialog" aria-label="Expanded paper figure"><div class="dialog-toolbar"><span>Dream4ACT · Paper figure</span><button type="button" id="close-figure" aria-label="Close expanded figure">Close ×</button></div><img id="expanded-figure" alt=""></dialog>
+  <noscript><p class="noscript-note">Enable JavaScript to load demonstration videos and explore all result tables. The paper overview and key results are available above.</p></noscript>
+</body>
+</html>
