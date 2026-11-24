@@ -12,7 +12,7 @@ window.DREAM4ACT_CONFIG = {
   "videos": {
     "hero": "assets/videos/real-world-highlights.mp4?v=3e411cc83a74",
     "heroPoster": "assets/images/posters/real-world-highlights.jpg?v=ea2dabae6449",
-    "overviewYouTubeId": "hOuqqBf4yC0",
+    "overviewYouTubeId": "w2Zq1-vYJZc",
     "experiments": [
       {
         "title": "Storage item",
