@@ -7,7 +7,7 @@ window.DREAM4ACT_CONFIG = {
   "links": {
     "paper": "https://arxiv.org/pdf/2609.40153",
     "arxiv": "https://arxiv.org/abs/2609.40153",
-    "video": "https://www.youtube.com/watch?v=hOuqqBf4yC0"
+    "video": "https://www.youtube.com/watch?v=w2Zq1-vYJZc&t"
   },
   "videos": {
     "hero": "assets/videos/real-world-highlights.mp4?v=3e411cc83a74",
